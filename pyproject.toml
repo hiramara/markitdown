@@ -1,0 +1,98 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "markitdown"
+version = "0.1.0"
+description = "A utility tool for converting various files and office documents to Markdown"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [
+    { name = "Microsoft", email = "markitdown@microsoft.com" },
+]
+keywords = ["markdown", "converter", "document", "office", "pdf"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing :: Markup :: Markdown",
+]
+dependencies = [
+    "beautifulsoup4",
+    "requests",
+    "markdownify",
+    "pathvalidate",
+]
+
+[project.optional-dependencies]
+pdf = ["pdfminer.six"]
+docx = ["python-docx"]
+pptx = ["python-pptx"]
+xlsx = ["openpyxl"]
+audio = ["openai"]
+all = [
+    "pdfminer.six",
+    "python-docx",
+    "python-pptx",
+    "openpyxl",
+    "openai",
+    "youtube-transcript-api",
+    "SpeechRecognition",
+]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "ruff",
+    "mypy",
+    "pre-commit",
+]
+
+[project.scripts]
+markitdown = "markitdown._cli:main"
+
+[project.urls]
+Homepage = "https://github.com/microsoft/markitdown"
+Repository = "https://github.com/microsoft/markitdown"
+Issues = "https://github.com/microsoft/markitdown/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/markitdown"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "tests/",
+    "README.md",
+    "LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
