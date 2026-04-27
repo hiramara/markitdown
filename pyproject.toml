@@ -79,6 +79,8 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
+# Show verbose output and print statements during test runs for easier debugging
+addopts = "-v -s"
 
 [tool.black]
 line-length = 100
