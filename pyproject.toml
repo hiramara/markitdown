@@ -80,7 +80,8 @@ python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
 # Show verbose output and print statements during test runs for easier debugging
-addopts = "-v -s"
+# Added --tb=short to get more concise tracebacks without losing useful info
+addopts = "-v -s --tb=short"
 
 [tool.black]
 line-length = 100
