@@ -81,7 +81,8 @@ python_classes = ["Test*"]
 python_functions = ["test_*"]
 # Show verbose output and print statements during test runs for easier debugging
 # Added --tb=short to get more concise tracebacks without losing useful info
-addopts = "-v -s --tb=short"
+# Added --no-header to reduce noise in output
+addopts = "-v -s --tb=short --no-header"
 
 [tool.black]
 line-length = 100
@@ -99,3 +100,5 @@ ignore = ["E501"]
 python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
+# Also warn about missing type stubs for third-party packages
+warn_unused_ignores = true
